@@ -1,0 +1,37 @@
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using System.Threading;
+
+namespace My_Nunit
+{
+    [TestFixture]
+    public class NunitTest
+    {
+         IWebDriver driver;
+
+        [SetUp]
+        public void Initialize()
+        {
+            driver = new ChromeDriver();
+        }
+        [Test]
+        public void OpenAppTest()
+        {
+            Thread.Sleep(5000);
+            driver.Url = "https://stageclogin.brightree.net/";
+            Thread.Sleep(3000);
+            var Uname = driver.FindElement(By.Id("Username"));
+            Uname.SendKeys("Rjadav@scdme");
+            Thread.Sleep(3000);
+            driver.FindElement(By.Id("Password")).SendKeys("Ritz@6011");
+            Thread.Sleep(3000);
+        }
+        [TearDown]
+        public void EndTest()
+        {
+            driver.Close();
+        }
+    }
+}
